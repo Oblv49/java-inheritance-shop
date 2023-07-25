@@ -80,4 +80,18 @@ public class Product {
             }
             return uniqueCode;
         }
+
+
+        //override tostring
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "uniqueCode='" + uniqueCode + '\'' +
+                ", name='" + name + '\'' +
+                ", marca='" + marca + '\'' +
+                ", price=" + price +
+                ", iva=" + iva +
+                '}';
+    }
 }
