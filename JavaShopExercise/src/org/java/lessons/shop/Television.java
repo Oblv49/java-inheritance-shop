@@ -1,6 +1,6 @@
 package org.java.lessons.shop;
 
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class Television extends Product {
     //declaration variables
@@ -22,14 +22,24 @@ public class Television extends Product {
         }
 
     //constructor
-    public Television(String uniqueCode, String name, String marca, double price, double iva, String inchTV, boolean isSmartTv) {
-        super(uniqueCode, name, marca, price, iva);
+
+
+    public Television() {
+        super();
+    }
+
+    public Television(String name, String merch, double price, double iva, String inchTV, boolean isSmartTv) {
+        super(name, merch, price, iva);
         this.inchTV = inchTV;
         this.isSmartTv = isSmartTv;
     }
 
     //methods
-    public boolean isSmartTv(String chooseUser) {
+    public boolean isSmartTv(String chooseUser, Scanner input) {
+        System.out.println("Scegli se vuoi una TV Smart o No: ");
+        System.out.println("1. Si");
+        System.out.println("2. No");
+        chooseUser = input.nextLine();
             switch (chooseUser) {
             case "1":
                 isSmartTv = true;
@@ -44,9 +54,20 @@ public class Television extends Product {
         return isSmartTv;
     }
 
+    public String setTelevisionBrand(String userChoose, Scanner input) {
+        String brand = merchChoose(userChoose, input);
+        setMarca(brand);
+        return brand;
+    }
+
     //choose inch tv
-    public String inchTvChoose(String chooseUser) {
-        switch (chooseUser) {
+    public String inchTvChoose(String userChoose, Scanner input) {
+        System.out.println("Inserisci un numero da 1 a 4 per scegliere i pollici della tua TV");
+        for (int i = 0; i < inchTvOptions.length; i++) {
+            System.out.println((i + 1) + ". " + inchTvOptions[i]);
+        }
+        userChoose = input.nextLine();
+        switch (userChoose) {
             case "1":
                 inchTV = inchTvOptions[0];
                 break;
@@ -60,7 +81,7 @@ public class Television extends Product {
                 inchTV = inchTvOptions[3];
                 break;
             default:
-                System.out.println("Invalid choice. The basic choose is 32");
+                System.out.println("Invalid choice. The basic inch is \"32\"");
                 inchTV = inchTvOptions[0];
                 break;
         }
